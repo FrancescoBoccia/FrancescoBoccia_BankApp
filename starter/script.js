@@ -120,7 +120,6 @@ createUsernames(accounts);
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent Form From SUbmitting
-  e.preventDefault();
 });
 
 /////////////////////////////////////////////////
