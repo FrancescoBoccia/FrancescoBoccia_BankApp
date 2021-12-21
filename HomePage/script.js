@@ -41,15 +41,26 @@ message.innerHTML =
 
 head.append(message);
 
+// /////////////////////////////////////
+// Scroll Navigation
+const scrollingButton = document.querySelector(".btn--scroll-to");
+const featuresSection = document.querySelector("#section--1");
+
 document
   .querySelector(".btn--close-cookie")
   .addEventListener("click", function () {
     message.remove();
   });
 
-const scrollingButton = document.querySelector(".btn--scroll-to");
-const featuresSection = document.querySelector("#section--1");
-
 scrollingButton.addEventListener("click", function () {
   featuresSection.scrollIntoView({ behavior: "smooth" });
+});
+
+// Nav Scroll to Element
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  }
 });
