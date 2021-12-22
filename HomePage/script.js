@@ -7,6 +7,11 @@ const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const message = document.createElement("div");
+const head = document.querySelector(".header");
+const scrollingButton = document.querySelector(".btn--scroll-to");
+const featuresSection = document.querySelector("#section--1");
+const h1 = document.querySelector("h1");
 
 const openModal = function (e) {
   e.preventDefault();
@@ -32,10 +37,7 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-const message = document.createElement("div");
 message.classList.add("cookie-message");
-const head = document.querySelector(".header");
-
 message.innerHTML =
   'This website uses cookies, for a better usage of the website. <button class="btn btn--close-cookie">Got It!!</button>';
 
@@ -43,8 +45,6 @@ head.append(message);
 
 // /////////////////////////////////////
 // Scroll Navigation
-const scrollingButton = document.querySelector(".btn--scroll-to");
-const featuresSection = document.querySelector("#section--1");
 
 document
   .querySelector(".btn--close-cookie")
@@ -56,11 +56,33 @@ scrollingButton.addEventListener("click", function () {
   featuresSection.scrollIntoView({ behavior: "smooth" });
 });
 
-// Nav Scroll to Element
+// Nav Scroll to Element (Smooth)
 document.querySelector(".nav__links").addEventListener("click", function (e) {
   e.preventDefault();
   if (e.target.classList.contains("nav__link")) {
     const id = e.target.getAttribute("href");
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
+});
+
+// /////////////////////////////////////
+// Content Button
+
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+tabsContainer.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const clicked = e.target.closest(".operations__tab");
+  if (!clicked) return;
+  tabs.forEach((tab) => tab.classList.remove("operations__tab--active"));
+  tabsContent.forEach((content) =>
+    content.classList.remove("operations__content--active")
+  );
+  clicked.classList.add("operations__tab--active");
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
 });
