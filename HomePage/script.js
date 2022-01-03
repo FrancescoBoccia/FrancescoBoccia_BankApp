@@ -111,3 +111,44 @@ const navLinksHoverOpacity = function (e) {
 
 navigationBar.addEventListener("mouseover", navLinksHoverOpacity.bind(0.5));
 navigationBar.addEventListener("mouseout", navLinksHoverOpacity.bind(1));
+
+// Sticky Navigation
+// const initialCoordinates = featuresSection.getBoundingClientRect();
+
+// window.addEventListener("scroll", function () {
+//   if (window.scrollY > initialCoordinates.top)
+//     navigationBar.classList.add("sticky");
+//   else navigationBar.classList.remove("sticky");
+// });
+
+// Sticky Navigation: Observer API
+// const obsCallback = function (entries, observer) {
+//   entries.forEach((entry) => {
+//     console.log(entry);
+//   });
+// };
+
+// const obsOptions = {
+//   root: null,
+//   threshold: [0, 0.2],
+// };
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(featuresSection);
+
+const header = document.querySelector(".header");
+const navigationHeight = navigationBar.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) navigationBar.classList.add("sticky");
+  else navigationBar.classList.remove("sticky");
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navigationHeight}px`,
+});
+
+headerObserver.observe(header);
