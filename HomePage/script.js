@@ -112,6 +112,7 @@ const navLinksHoverOpacity = function (e) {
 navigationBar.addEventListener("mouseover", navLinksHoverOpacity.bind(0.5));
 navigationBar.addEventListener("mouseout", navLinksHoverOpacity.bind(1));
 
+// /////////////////////////////////////
 // Sticky Navigation
 // const initialCoordinates = featuresSection.getBoundingClientRect();
 
@@ -153,6 +154,7 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 
 headerObserver.observe(header);
 
+// /////////////////////////////////////
 // Reveale Sections on Scroll
 const allSection = document.querySelectorAll(".section");
 const revealSection = function (entries, observer) {
@@ -173,6 +175,7 @@ allSection.forEach(function (section) {
   section.classList.add("section--hidden");
 });
 
+// /////////////////////////////////////
 // Lazy Loading Images, Implement the Website Page
 const imgTargets = document.querySelectorAll("img[data-src]");
 
@@ -199,6 +202,7 @@ const imgObserver = new IntersectionObserver(loadImg, {
 
 imgTargets.forEach((img) => imgObserver.observe(img));
 
+// /////////////////////////////////////
 // Slider Component
 const slider = function () {
   const slides = document.querySelectorAll(".slide");
@@ -284,3 +288,13 @@ const slider = function () {
   });
 };
 slider();
+
+
+// /////////////////////////////////////
+document.addEventListener("DOMContentLoaded", function (e) {
+  console.log("HTML and DOM", e);
+});
+
+window.addEventListener("load", function (e) {
+  console.log("Page loaded", e);
+});
